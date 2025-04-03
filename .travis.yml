@@ -55,3 +55,10 @@ jobs:
             echo "Building with standard path..."
             ./bin/compile
           fi
+env:
+  global:
+    - VERSION=8.4.5
+    - ALIAS=8.4
+    - ICU_RELEASE=74.2
+    - ICU_INSTALL_DIR=$HOME/.phpenv/versions/$VERSION
+    - PATH="$HOME/.phpenv/bin:$HOME/.php-build/bin:$PATH"
