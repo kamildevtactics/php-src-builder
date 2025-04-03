@@ -25,9 +25,10 @@ jobs:
               eval "$(phpenv init -)"
             fi
           fi
+    fi
 env:
   global:
-    - VERSION=8.4.5
+    - VERSION=8.4.5 
     - ALIAS=8.4
     - ICU_RELEASE=74.2
     - ICU_INSTALL_DIR=$HOME/.phpenv/versions/$VERSION
@@ -63,20 +64,8 @@ install:
   - |
     if [[ -f default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
       cp default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f $HOME/.php-build/share/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
-      cp $HOME/.php-build/share/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
-      cp php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f php-src-builder/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
-      cp php-src-builder/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f default_configure_options.$RELEASE ]]; then
+    else
       cp default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f $HOME/.php-build/share/php-build/definitions/default_configure_options.$RELEASE ]]; then
-      cp $HOME/.php-build/share/php-build/definitions/default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE ]]; then
-      cp php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f php-src-builder/php-build/definitions/default_configure_options.$RELEASE ]]; then
-      cp php-src-builder/php-build/definitions/default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
     fi
   - cat custom_configure_options >> $HOME/.php-build/share/php-build/default_configure_options
   - |
