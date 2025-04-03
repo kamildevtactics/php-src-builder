@@ -462,8 +462,8 @@ jobs:
     #       fi
 env:
   global:
-    - VERSION=8.3
-    - ALIAS=8.3.9
+    - VERSION=8.3.6
+    - ALIAS=8.3
     - ICU_RELEASE=74.2
     - ICU_INSTALL_DIR=$HOME/.phpenv/versions/$VERSION
     - PATH="$HOME/.phpenv/bin:$HOME/.php-build/bin:$PATH"
