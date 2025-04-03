@@ -1,5 +1,4 @@
 # language: php
-
 jobs:
   include:
     - dist: noble
