@@ -350,117 +350,6 @@ jobs:
     #           eval "$(phpenv init -)"
     #         fi
     #       fi
-    #     - 'echo "--without-pcre-jit" >> $TRAVIS_BUILD_DIR/custom_configure_options'
-    - arch: arm64
-      dist: noble
-      php: "8.3"
-      env:
-        - RELEASE=noble
-      name: noble-arm64
-      before_install:
-        - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
-        - sudo apt-get update
-        - sudo apt-get -y install libcurl4-openssl-dev php-dev libicu-dev php-pear php
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2-0 php-pear libargon2-0-dev php-dev libonig-dev; fi
-        - |
-          if ! command -v phpenv; then
-            pushd $HOME
-            curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-            popd
-            export PHPENV_ROOT="/home/travis/.phpenv"
-            if [ -d "${PHPENV_ROOT}" ]; then
-              export PATH="${PHPENV_ROOT}/bin:${PATH}"
-              eval "$(phpenv init -)"
-            fi
-          fi
-    - arch: arm64
-      dist: jammy
-      php: "8.2"
-      env:
-        - RELEASE=jammy
-      name: jammy-arm64
-      before_install:
-        - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
-        - sudo apt-get update
-        - sudo apt-get -y install libcurl4-openssl-dev php-dev libicu-dev php-pear php
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2-0 php-pear libargon2-0-dev php-dev libonig-dev; fi
-        - |
-          if ! command -v phpenv; then
-            pushd $HOME
-            curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-            popd
-            export PHPENV_ROOT="/home/travis/.phpenv"
-            if [ -d "${PHPENV_ROOT}" ]; then
-              export PATH="${PHPENV_ROOT}/bin:${PATH}"
-              eval "$(phpenv init -)"
-            fi
-          fi
-    - arch: arm64
-      dist: focal
-      php: "7.4"
-      env:
-        - RELEASE=focal
-      name: focal-arm64
-      before_install:
-        - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
-        - sudo apt-get update
-        - sudo apt-get -y install libcurl4-openssl-dev php-pear php-dev libicu-dev
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 php-pear libargon2-0 libargon2-0-dev php-dev libonig-dev; fi
-        - |
-          if ! command -v phpenv; then
-            pushd $HOME
-            curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-            popd
-            export PHPENV_ROOT="/home/travis/.phpenv"
-            if [ -d "${PHPENV_ROOT}" ]; then
-              export PATH="${PHPENV_ROOT}/bin:${PATH}"
-              eval "$(phpenv init -)"
-            fi
-          fi
-    - arch: arm64
-      dist: bionic
-      php: "7.4"
-      env:
-        - RELEASE=bionic
-      name: bionic-arm64
-      before_install:
-        - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
-        - sudo apt-get update
-        - sudo apt-get -y install libcurl4-openssl-dev php-pear php-dev libicu-dev
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 php-pear libargon2-0 libargon2-0-dev php-dev libonig-dev; fi
-        - |
-          if ! command -v phpenv; then
-            pushd $HOME
-            curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-            popd
-            export PHPENV_ROOT="/home/travis/.phpenv"
-            if [ -d "${PHPENV_ROOT}" ]; then
-              export PATH="${PHPENV_ROOT}/bin:${PATH}"
-              eval "$(phpenv init -)"
-            fi
-          fi
-    # - arch: arm64
-    #   dist: xenial
-    #   php: "7.4"
-    #   env:
-    #     - RELEASE=xenial
-    #   name: xenial-arm64
-    #   before_install:
-    #     - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
-    #     - sudo apt-get update
-    #     - sudo apt-get install -y libicu-dev
-    #     - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install php-pear php-dev libonig-dev build-essential; fi
-    #     - |
-    #       if ! command -v phpenv; then
-    #         pushd $HOME
-    #         curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash
-    #         popd
-    #         export PHPENV_ROOT="/home/travis/.phpenv"
-    #         if [ -d "${PHPENV_ROOT}" ]; then
-    #           export PATH="${PHPENV_ROOT}/bin:${PATH}"
-    #           eval "$(phpenv init -)"
-    #         fi
-    #       fi
 env:
   global:
     - VERSION=8.4.5
@@ -499,12 +388,12 @@ install:
   - |
     if [[ -f default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
       cp default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
-      cp php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
+    elif [[ -f php-src-builder/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
+      cp php-src-builder/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
     elif [[ -f default_configure_options.$RELEASE ]]; then
       cp default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
-    elif [[ -f php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE ]]; then
-      cp php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
+    elif [[ -f php-src-builder/php-build/definitions/default_configure_options.$RELEASE ]]; then
+      cp php-src-builder/php-build/definitions/default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
     fi
   - cat custom_configure_options >> $HOME/.php-build/share/php-build/default_configure_options
   - |
