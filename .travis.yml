@@ -25,10 +25,9 @@ jobs:
               eval "$(phpenv init -)"
             fi
           fi
-    fi
 env:
   global:
-    - VERSION=8.4.5 
+    - VERSION=8.4.5
     - ALIAS=8.4
     - ICU_RELEASE=74.2
     - ICU_INSTALL_DIR=$HOME/.phpenv/versions/$VERSION
