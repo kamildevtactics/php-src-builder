@@ -1,4 +1,5 @@
 # language: php
+
 jobs:
   include:
     - dist: noble
@@ -498,8 +499,12 @@ install:
   - |
     if [[ -f default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
       cp default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
-    else
+    elif [[ -f php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION ]]; then
+      cp php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE-$MINOR_VERSION $HOME/.php-build/share/php-build/default_configure_options
+    elif [[ -f default_configure_options.$RELEASE ]]; then
       cp default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
+    elif [[ -f php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE ]]; then
+      cp php-src-builder/php-build/php-build/definitions/default_configure_options.$RELEASE $HOME/.php-build/share/php-build/default_configure_options
     fi
   - cat custom_configure_options >> $HOME/.php-build/share/php-build/default_configure_options
   - |
