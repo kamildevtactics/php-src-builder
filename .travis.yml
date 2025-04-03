@@ -142,7 +142,7 @@ after_failure:
   - ls -la ~/.phpenv/plugins/ 2>/dev/null || echo "Katalog plugins nie istnieje"
   - which php-build
   - find ~/.phpenv -name "definitions" -type d 2>/dev/null
-  - ls -ltr /home/travis/.php-build/bin/php-build
+  - ls -ltr /home/travis/.php-build/bin/php-build/
 
 addons:
   artifacts:
