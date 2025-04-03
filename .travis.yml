@@ -132,6 +132,9 @@ after_success:
 after_failure:
   - cat /tmp/php-build.*.log
   - ls -ltr /home/travis/.phpenv/versions
+  - pwd
+  - ls -ltr
+  - ls -ltr ~/.phpenv/plugins/php-build/share/php-build/definitions/
 
 addons:
   artifacts:
