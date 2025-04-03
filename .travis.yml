@@ -131,6 +131,7 @@ after_success:
 
 after_failure:
   - cat /tmp/php-build.*.log
+  - ls -ltr /home/travis/.phpenv/versions
 
 addons:
   artifacts:
