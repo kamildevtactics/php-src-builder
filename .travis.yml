@@ -32,7 +32,7 @@ jobs:
         - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
         - sudo apt-get update
         - sudo apt-get -y install libcurl4-openssl-dev php-dev libicu-dev php-pear php libmemcached-dev 
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2-0 php-pear libargon2-0-dev php-dev libonig-dev; fi
+        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2 php-pear libargon2-dev php-dev libonig-dev; fi
         - sudo ln -s /usr/include/x86_64-linux-gnu/curl/ /usr/local/include
         - command -v expect || sudo apt-get install expect
         - |
@@ -244,7 +244,7 @@ jobs:
         - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
         - sudo apt-get update
         - sudo apt-get -y install libcurl4-openssl-dev php-dev libicu-dev php-pear php libmemcached-dev
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2-0 php-pear libargon2-0-dev php-dev libonig-dev; fi
+        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2 php-pear libargon2-dev php-dev libonig-dev; fi
         - |
           if ! command -v phpenv; then
             pushd $HOME
@@ -381,7 +381,7 @@ jobs:
         - sudo rm -rf /var/lib/apt/lists/lock /var/cache/apt/archives/lock /var/lib/dpkg/lock
         - sudo apt-get update
         - sudo apt-get -y install libcurl4-openssl-dev php-dev libicu-dev php-pear php libmemcached-dev
-        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2-0 php-pear libargon2-0-dev php-dev libonig-dev; fi
+        - if [[ $VERSION =~ ^8.* ]]; then sudo apt-get -y install argon2 libargon2 php-pear libargon2-dev php-dev libonig-dev; fi
         - |
           if ! command -v phpenv; then
             pushd $HOME
@@ -490,7 +490,7 @@ install:
   - ./bin/install-icu
   - export PKG_CONFIG_PATH=$ICU_INSTALL_DIR/lib/pkgconfig:$PKG_CONFIG_PATH
   - touch custom_configure_options
-  - ./bin/install-libzip
+  # - ./bin/install-libzip
   - ./bin/install-libsodium
   - sudo ./bin/install-password-argon2
   - . ./bin/install-onig # sourced to export ONIG_LIBS
