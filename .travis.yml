@@ -101,6 +101,7 @@ before_install:
   - sudo apt-get -y install libmemcached-dev
 
 install:
+  - travis_wait 30 mvn install
   - if [[ ! -d $HOME/.php-build ]]; then git clone https://github.com/kamildevtactics/php-build.git $HOME/.php-build; fi
   - ~/.php-build/install-dependencies.sh
   - rm -rf $HOME/.phpenv
